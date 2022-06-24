@@ -1,0 +1,22 @@
+#spring:
+#  datasource:
+#    password: 971707
+#    username: root
+#    url: jdbc:mysql://124.222.48.192:3306/DinosaurStore_sms?useSSL=false&serverTimezone=UTC&useUnicode=true&characterEncoding=utf8&autoReconnect=true&allowMultiQueries=true
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+#  cloud:
+#    nacos:
+#      discovery:
+#        server-addr: 124.222.48.192:8848
+#  application:
+#    name: DinosaurStore-coupon
+#
+#mybatis-plus:
+#  mapper-locations: classpath:/mapper/**/*.xml
+#  global-config:
+#    db-config:
+#      id-type: auto
+#
+#server:
+#  port: 12000
+#

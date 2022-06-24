@@ -1,0 +1,2 @@
+# DinosaurStore
+a study project

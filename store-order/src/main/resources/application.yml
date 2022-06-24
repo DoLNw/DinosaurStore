@@ -1,0 +1,16 @@
+spring:
+  datasource:
+    password: 971707
+    username: root
+    url: jdbc:mysql://124.222.48.192:3306/DinosaurStore_oms?useSSL=false&serverTimezone=UTC&useUnicode=true&characterEncoding=utf8&autoReconnect=true&allowMultiQueries=true
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+mybatis-plus:
+  mapper-locations: classpath:/mapper/**/*.xml
+  global-config:
+    db-config:
+      id-type: auto
+
+server:
+  port: 9000
+
