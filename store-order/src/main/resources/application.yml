@@ -2,8 +2,44 @@ spring:
   datasource:
     password: 971707
     username: root
-    url: jdbc:mysql://124.222.48.192:3306/DinosaurStore_oms?useSSL=false&serverTimezone=UTC&useUnicode=true&characterEncoding=utf8&autoReconnect=true&allowMultiQueries=true
+    url: jdbc:mysql://124.222.48.192:3306/DinosaurStore_oms?useSSL=false&serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf8&autoReconnect=true&allowMultiQueries=true
+    #            ?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
     driver-class-name: com.mysql.cj.jdbc.Driver
+
+
+  application:
+    name: DinosaurStore-order
+
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 124.222.48.192:8848
+
+#    sentinel:
+#      transport:
+#        #配置sentinel dashboard地址
+#        dashboard: localhost:8080
+
+  redis:
+    host: 124.222.48.192
+    port: 6379
+    password: 123456
+
+  session:
+    store-type: redis
+
+##开启feign对sentinel的支持
+#feign:
+#  sentinel:
+#    enabled: true
+#
+##暴露所有端点
+#management:
+#  endpoints:
+#    web:
+#      exposure:
+#        include: '*'
+
 
 mybatis-plus:
   mapper-locations: classpath:/mapper/**/*.xml
@@ -14,3 +50,6 @@ mybatis-plus:
 server:
   port: 9000
 
+logging:
+  level:
+    com.jcwang: debug

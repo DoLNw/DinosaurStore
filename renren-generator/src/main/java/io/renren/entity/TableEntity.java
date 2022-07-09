@@ -5,7 +5,7 @@ import java.util.List;
 /**
  * 表数据
  * 
- * @author chenshun
+ * @author jcwang
  * @email sunlightcs@gmail.com
  * @date 2016年12月20日 上午12:02:55
  */

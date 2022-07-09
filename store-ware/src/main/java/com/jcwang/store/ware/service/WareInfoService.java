@@ -3,6 +3,7 @@ package com.jcwang.store.ware.service;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.jcwang.store.utils.PageUtils;
 import com.jcwang.store.ware.entity.WareInfoEntity;
+import com.jcwang.store.ware.vo.FareVo;
 
 import java.util.Map;
 
@@ -16,5 +17,13 @@ import java.util.Map;
 public interface WareInfoService extends IService<WareInfoEntity> {
 
     PageUtils queryPage(Map<String, Object> params);
+
+    /**
+     * 根据用户的收费地址计算运费
+     *
+     * @param addrId
+     * @return
+     */
+    FareVo getFare(Long addrId);
 }
 

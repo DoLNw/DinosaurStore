@@ -17,6 +17,121 @@ spring:
             - Query=url, qq
 
 
+        # 注意需要调整顺序，精确的放在前面
+        - id: product_route
+          uri: lb://DinosaurStore-product
+          predicates:
+            - Path=/api/product/**
+          filters:
+            - RewritePath=/api/(?<segment>.*),/$\{segment} # 此处吧api去掉即可
+
+        # 注意，更精确的一定要放在前面
+        - id: third_party_route
+          # 注意，下面这个lb是负载均衡的意思，后面的那个是去注册中心根据应用名字找的
+          uri: lb://DinosaurStore-ThirdParty
+          predicates:
+            - Path=/api/thirdparty/**
+          filters:
+            - RewritePath=/api/thirdparty/(?<segment>.*),/$\{segment}
+
+        # 注意，更精确的一定要放在前面
+        - id: member_route
+          # 注意，下面这个lb是负载均衡的意思，后面的那个是去注册中心根据应用名字找的
+          uri: lb://DinosaurStore-member
+          predicates:
+            - Path=/api/member/**
+          filters:
+            - RewritePath=/api/(?<segment>.*),/$\{segment}
+
+        # 注意，更精确的一定要放在前面
+        - id: coupon_route
+        # 注意，下面这个lb是负载均衡的意思，后面的那个是去注册中心根据应用名字找的
+          uri: lb://DinosaurStore-coupon
+          predicates:
+            - Path=/api/coupon/**
+          filters:
+            - RewritePath=/api/(?<segment>.*),/$\{segment}
+
+        # 注意，更精确的一定要放在前面
+        - id: ware_route
+          # 注意，下面这个lb是负载均衡的意思，后面的那个是去注册中心根据应用名字找的
+          uri: lb://DinosaurStore-ware
+          predicates:
+            - Path=/api/ware/**
+          filters:
+            - RewritePath=/api/(?<segment>.*),/$\{segment}
+
+        # 注意，更精确的一定要放在前面
+        - id: order_route
+        # 注意，下面这个lb是负载均衡的意思，后面的那个是去注册中心根据应用名字找的
+          uri: lb://DinosaurStore-order
+          predicates:
+            - Path=/api/order/**
+          filters:
+            - RewritePath=/api/(?<segment>.*),/$\{segment}
+
+        - id: admin_route
+          # 注意，下面这个lb是负载均衡的意思，后面的那个是去注册中心找的
+          uri: lb://DinosaurStore-renrenfast
+          predicates:
+            - Path=/api/**
+          filters:
+            - RewritePath=/api/(?<segment>.*),/renren-fast/$\{segment}
+
+
+        - id: my_search_route
+          # 注意，下面这个lb是负载均衡的意思，后面的那个是去注册中心找的
+          uri: lb://DinosaurStore-search
+          predicates:
+            - Host=search.dinosaurstore.com
+
+        - id: my_auth_route
+          # 注意，下面这个lb是负载均衡的意思，后面的那个是去注册中心找的
+          uri: lb://DinosaurStore-auth
+          predicates:
+            - Host=auth.dinosaurstore.com
+
+        - id: my_cart_route
+          # 注意，下面这个lb是负载均衡的意思，后面的那个是去注册中心找的
+          uri: lb://DinosaurStore-cart
+          predicates:
+            - Host=cart.dinosaurstore.com
+
+        - id: my_order_route
+          # 注意，下面这个lb是负载均衡的意思，后面的那个是去注册中心找的
+          uri: lb://DinosaurStore-order
+          predicates:
+            - Host=order.dinosaurstore.com
+
+        - id: my_coupon_route
+          # 注意，下面这个lb是负载均衡的意思，后面的那个是去注册中心找的
+          uri: lb://DinosaurStore-coupon
+          predicates:
+            - Host=coupon.dinosaurstore.com
+
+        - id: my_member_route
+          # 注意，下面这个lb是负载均衡的意思，后面的那个是去注册中心找的
+          uri: lb://DinosaurStore-member
+          predicates:
+            - Host=member.dinosaurstore.com
+
+        - id: my_seckill_route
+          # 注意，下面这个lb是负载均衡的意思，后面的那个是去注册中心找的
+          uri: lb://DinosaurStore-seckill
+          predicates:
+            - Host=seckill.dinosaurstore.com
+
+        - id: main_route
+          # 注意，下面这个lb是负载均衡的意思，后面的那个是去注册中心找的
+          uri: lb://DinosaurStore-product
+          predicates:
+            - Host=dinosaurstore.com, item.dinosaurstore.com
+
+
+
+## 前端项目发送请求，都带上/api前缀
+
+
   application:
     name: DinosaurStore-gateway
 server:

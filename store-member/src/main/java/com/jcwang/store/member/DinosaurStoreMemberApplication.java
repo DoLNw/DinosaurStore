@@ -4,6 +4,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.openfeign.EnableFeignClients;
+import org.springframework.session.data.redis.config.annotation.web.http.EnableRedisHttpSession;
 
 /**
  * openfeign
@@ -15,9 +16,11 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
  * 3. 开启远程调用功能@EnableFeignClients，然后指定远程调用服务的接口在哪个包里面（此处在feign下）
  *
  */
-@SpringBootApplication
-@EnableDiscoveryClient
+
+@EnableRedisHttpSession
 @EnableFeignClients(basePackages = "com.jcwang.store.member.feign")
+@EnableDiscoveryClient
+@SpringBootApplication
 public class DinosaurStoreMemberApplication {
     public static void main(String[] args) {
         SpringApplication.run(DinosaurStoreMemberApplication.class);

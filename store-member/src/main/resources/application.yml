@@ -2,7 +2,8 @@ spring:
   datasource:
     password: 971707
     username: root
-    url: jdbc:mysql://124.222.48.192:3306/DinosaurStore_ums?useSSL=false&serverTimezone=UTC&useUnicode=true&characterEncoding=utf8&autoReconnect=true&allowMultiQueries=true
+    url: jdbc:mysql://124.222.48.192:3306/DinosaurStore_ums?useSSL=false&serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf8&autoReconnect=true&allowMultiQueries=true
+    #            ?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
     driver-class-name: com.mysql.cj.jdbc.Driver
   cloud:
     nacos:
@@ -11,6 +12,16 @@ spring:
   application:
     name: DinosaurStore-member
 
+  redis:
+    host: 124.222.48.192
+    port: 6379
+    password: 123456
+  session:
+    store-type:
+      redis
+  thymeleaf:
+    cache: false
+
 mybatis-plus:
   mapper-locations: classpath:/mapper/**/*.xml
   global-config:
@@ -18,6 +29,6 @@ mybatis-plus:
       id-type: auto
 
 server:
-  port: 8000
+  port: 13000
 
 

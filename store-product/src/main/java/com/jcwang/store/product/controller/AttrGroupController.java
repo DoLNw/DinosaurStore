@@ -20,7 +20,7 @@ import com.jcwang.store.utils.R;
 /**
  * 属性分组
  *
- * @author chenshun
+ * @author jcwang
  * @email jcwang0717@163.com
  * @date 2022-06-23 09:59:08
  */

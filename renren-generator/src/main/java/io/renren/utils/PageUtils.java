@@ -6,7 +6,7 @@ import java.util.List;
 /**
  * 分页工具类
  * 
- * @author chenshun
+ * @author jcwang
  * @email sunlightcs@gmail.com
  * @date 2016年11月4日 下午12:59:00
  */

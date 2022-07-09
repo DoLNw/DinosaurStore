@@ -1,0 +1,48 @@
+spring:
+  application:
+    name: DinosaurStore-seckill
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 124.222.48.192:8848
+
+
+  redis:
+    host: 124.222.48.192
+    port: 6379
+    password: 123456
+  session:
+    store-type: redis
+
+
+  task:
+    execution:
+      pool:
+        core-size: 5
+        max-size: 50
+  thymeleaf:
+    cache: false
+#  task:
+#    scheduling:
+#      pool:
+#        size: 5
+
+
+
+
+mybatis-plus:
+  mapper-locations: classpath:/mapper/**/*.xml
+  global-config:
+    db-config:
+      id-type: auto
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+
+
+logging:
+  level:
+    com.jcwang.store: debug
+
+
+server:
+  port: 15000

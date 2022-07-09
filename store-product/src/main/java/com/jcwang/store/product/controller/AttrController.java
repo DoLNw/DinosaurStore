@@ -1,15 +1,15 @@
 package com.jcwang.store.product.controller;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 
 // import org.apache.shiro.authz.annotation.RequiresPermissions;
+import com.jcwang.store.product.entity.ProductAttrValueEntity;
+import com.jcwang.store.product.service.ProductAttrValueService;
+import com.jcwang.store.product.vo.AttrRespVo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.jcwang.store.product.entity.AttrEntity;
 import com.jcwang.store.product.service.AttrService;
@@ -20,7 +20,7 @@ import com.jcwang.store.utils.R;
 /**
  * 商品属性
  *
- * @author chenshun
+ * @author jcwang
  * @email jcwang0717@163.com
  * @date 2022-06-23 09:59:07
  */
@@ -29,6 +29,25 @@ import com.jcwang.store.utils.R;
 public class AttrController {
     @Autowired
     private AttrService attrService;
+
+    @Autowired
+    private ProductAttrValueService productAttrValueService;
+
+
+    @GetMapping("base/listforspu/{spuId}")
+    public R baseAttrlistforspu(@PathVariable("spuId") Long spuId) {
+        List<ProductAttrValueEntity> data = productAttrValueService.baseAttrlistforspu(spuId);
+
+        return R.ok().put("data", data);
+    }
+
+    @PostMapping("update/{spuId}")
+    public R updatepuAttr(@PathVariable("spuId") Long spuId,
+                          @RequestBody List<ProductAttrValueEntity> entities) {
+        productAttrValueService.updateSpuAttr(spuId, entities);
+
+        return R.ok();
+    }
 
     /**
      * 列表
@@ -48,9 +67,11 @@ public class AttrController {
     @RequestMapping("/info/{attrId}")
     // @RequiresPermissions("product:attr:info")
     public R info(@PathVariable("attrId") Long attrId){
-		AttrEntity attr = attrService.getById(attrId);
+//		AttrEntity attr = attrService.getById(attrId);
 
-        return R.ok().put("attr", attr);
+        AttrRespVo respVo = attrService.getAttrInfo(attrId);
+
+        return R.ok().put("attr", respVo);
     }
 
     /**

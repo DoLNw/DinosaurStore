@@ -2,14 +2,49 @@ spring:
   datasource:
     password: 971707
     username: root
-    url: jdbc:mysql://124.222.48.192:3306/DinosaurStore_pms?useSSL=false&serverTimezone=UTC&useUnicode=true&characterEncoding=utf8&autoReconnect=true&allowMultiQueries=true
+    url: jdbc:mysql://124.222.48.192:3306/DinosaurStore_pms?useSSL=false&serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf8&autoReconnect=true&allowMultiQueries=true
+    #            ?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
     driver-class-name: com.mysql.cj.jdbc.Driver
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 124.222.48.192:8848
+#    alicloud:
+#      access-key: LTAI5tP3h36zdd7BELdb7C67
+#      secret-key: CUZu3eBF80tsNY0GXlg9FPsadOtl3A
+#      oss:
+#        endpoint: oss-cn-hangzhou.aliyuncs.com
+  application:
+    name: DinosaurStore-product
+
+  thymeleaf:
+    cache: false
+
+  redis:
+    host: 124.222.48.192
+    port: 6379
+    password: 123456
+  session:
+    store-type: redis
+
+
+
+
 
 mybatis-plus:
   mapper-locations: classpath:/mapper/**/*.xml
   global-config:
     db-config:
       id-type: auto
+      logic-delete-value: 1
+      logic-not-delete-value: 0
 
 server:
   port: 10000
+
+logging:
+  level:
+    com.jcwang.store: debug
+
+
+

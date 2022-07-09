@@ -1,15 +1,16 @@
 package com.jcwang.store.ware.controller;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 
 // import org.apache.shiro.authz.annotation.RequiresPermissions;
+import com.jcwang.store.exception.BizCodeEnum;
+import com.jcwang.store.exception.NoStockException;
+import com.jcwang.store.ware.SkuHasStockVo;
+import com.jcwang.store.ware.vo.WareSkuLockVo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.jcwang.store.ware.entity.WareSkuEntity;
 import com.jcwang.store.ware.service.WareSkuService;
@@ -29,6 +30,30 @@ import com.jcwang.store.utils.R;
 public class WareSkuController {
     @Autowired
     private WareSkuService wareSkuService;
+
+    @PostMapping("/lock/order")
+    public R orderLockStock(@RequestBody WareSkuLockVo vo) {
+        try {
+            Boolean stock = wareSkuService.orderLockStock(vo);
+            return R.ok();
+        } catch (NoStockException e) {
+            // 锁库存失败
+            return R.error(BizCodeEnum.NO_STOCK_EXCEPTION.getCode(), BizCodeEnum.NO_STOCK_EXCEPTION.getMsg());
+        }
+    }
+
+    /**
+     * 查询是否存在库存
+     */
+    @PostMapping("/hasStock")
+    public R getSkuHasStock(@RequestBody List<Long> skuIds) {
+        // sku_id, stock
+        List<SkuHasStockVo> data = wareSkuService.getSkusHasStock(skuIds);
+
+//        R r = R.ok();
+//        r.setData(data);
+        return R.ok().setData(data);
+    }
 
     /**
      * 列表

@@ -8,6 +8,8 @@
 
 package com.jcwang.store.utils;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.TypeReference;
 import org.apache.http.HttpStatus;
 
 import java.util.HashMap;
@@ -20,10 +22,49 @@ import java.util.Map;
  */
 public class R extends HashMap<String, Object> {
 	private static final long serialVersionUID = 1L;
+
+	/**
+	 * 远程调用的，拿到R，再取出来麻烦，所以可以加个范型
+	 */
+//	private T data;
+//	public T getData() {
+//		return data;
+//	}
+//	public void setData(T data) {
+//		this.data = data;
+//	}
 	
 	public R() {
 		put("code", 0);
 		put("msg", "success");
+	}
+
+	/**
+	 * 链式编程
+ 	 */
+	public R setData(Object data) {
+		put("data", data);
+		return this;
+	}
+
+	public <T> T getData(String name, TypeReference<T> typeReference) {
+		T data = JSON.parseObject(JSON.toJSONString(get(name)), typeReference);
+		return data;
+	}
+
+	/**
+	 * 利用fastjson进行逆转
+	 * @param typeReference
+	 * @return
+	 * @param <T>
+	 */
+	public <T> T getData(TypeReference<T> typeReference) {
+		T data = JSON.parseObject(JSON.toJSONString(get("data")), typeReference);
+		return data;
+	}
+
+	public int getCode() {
+		return (int) get("code");
 	}
 	
 	public static R error() {

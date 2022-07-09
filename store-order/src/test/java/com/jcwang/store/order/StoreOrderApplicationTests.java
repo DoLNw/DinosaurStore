@@ -1,13 +1,24 @@
 package com.jcwang.store.order;
 
-import org.junit.jupiter.api.Test;
+import com.jcwang.store.order.entity.OrderEntity;
+import org.junit.Test;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class StoreOrderApplicationTests {
+public class StoreOrderApplicationTests {
 
 	@Test
-	void contextLoads() {
+	public void contextLoads() {
+	}
+
+	@Autowired
+	private RabbitTemplate rabbitTemplate;
+
+	@Test
+	public void testRabbit() {
+		rabbitTemplate.convertAndSend("order.release.order", new OrderEntity());
 	}
 
 }

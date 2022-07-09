@@ -3,6 +3,7 @@ package com.jcwang.store.ware.service;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.jcwang.store.utils.PageUtils;
 import com.jcwang.store.ware.entity.WareOrderTaskEntity;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.Map;
 
@@ -16,5 +17,7 @@ import java.util.Map;
 public interface WareOrderTaskService extends IService<WareOrderTaskEntity> {
 
     PageUtils queryPage(Map<String, Object> params);
+
+    WareOrderTaskEntity getOrderTaskByOrderSn(@Param("orderSn") String orderSn);
 }
 

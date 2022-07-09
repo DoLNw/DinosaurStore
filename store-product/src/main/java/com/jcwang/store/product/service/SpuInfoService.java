@@ -9,12 +9,16 @@ import java.util.Map;
 /**
  * spu信息
  *
- * @author chenshun
+ * @author jcwang
  * @email jcwang0717@163.com
  * @date 2022-06-23 09:59:07
  */
 public interface SpuInfoService extends IService<SpuInfoEntity> {
 
     PageUtils queryPage(Map<String, Object> params);
+
+    void up(Long spuId);
+
+    SpuInfoEntity getSpuInfoBySkuId(Long skuId);
 }
 

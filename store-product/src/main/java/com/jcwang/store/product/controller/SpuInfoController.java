@@ -5,11 +5,7 @@ import java.util.Map;
 
 // import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.jcwang.store.product.entity.SpuInfoEntity;
 import com.jcwang.store.product.service.SpuInfoService;
@@ -20,7 +16,7 @@ import com.jcwang.store.utils.R;
 /**
  * spu信息
  *
- * @author chenshun
+ * @author jcwang
  * @email jcwang0717@163.com
  * @date 2022-06-23 09:59:07
  */
@@ -29,6 +25,22 @@ import com.jcwang.store.utils.R;
 public class SpuInfoController {
     @Autowired
     private SpuInfoService spuInfoService;
+
+    @GetMapping("/skuId/{id}")
+    public R getSpuInfoBySkuId(@PathVariable("id") Long skuId) {
+
+        SpuInfoEntity entity = spuInfoService.getSpuInfoBySkuId(skuId);
+
+
+        return R.ok().setData(entity);
+    }
+
+    @PostMapping("/{spuId}/up")
+    public R spuUp(@PathVariable("spuId") Long spuId) {
+        spuInfoService.up(spuId);
+
+        return R.ok();
+    }
 
     /**
      * 列表

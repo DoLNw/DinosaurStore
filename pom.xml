@@ -21,6 +21,11 @@
 		<module>renren-generator</module>
 		<module>store-common</module>
 		<module>store-gateway</module>
-	</modules>
+		<module>store-third-party</module>
+		<module>store-search</module>
+		<module>store-auto-server</module>
+		<module>store-cart</module>
+		<module>store-seckill</module>
+    </modules>
 
 </project>

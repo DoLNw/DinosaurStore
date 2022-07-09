@@ -1,0 +1,25 @@
+spring:
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 124.222.48.192:8848
+    alicloud:
+      access-key: LTAI5tP3h36zdd7BELdb7C67
+      secret-key: CUZu3eBF80tsNY0GXlg9FPsadOtl3A
+      oss:
+        endpoint: oss-cn-hangzhou.aliyuncs.com
+        bucket: dinosaurstore
+
+      sms:
+        host: https://zwp.market.alicloudapi.com
+        path: /sms/sendv2
+        skin: 1
+        sign: 175622
+        appcode: 7e103340b6ae47d5b7df56d7afdf2ca6
+
+  application:
+    name: DinosaurStore-ThirdParty
+
+server:
+  port: 30000
+

@@ -1,15 +1,12 @@
 package com.jcwang.store.coupon.controller;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 
 // import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.jcwang.store.coupon.entity.SeckillSessionEntity;
 import com.jcwang.store.coupon.service.SeckillSessionService;
@@ -29,6 +26,14 @@ import com.jcwang.store.utils.R;
 public class SeckillSessionController {
     @Autowired
     private SeckillSessionService seckillSessionService;
+
+    @GetMapping("/latest3DaySession")
+    public R getLatest3DaySession() {
+        List<SeckillSessionEntity> seckillSessionEntities = seckillSessionService.getLatest3DaySession();
+
+        return R.ok().setData(seckillSessionEntities);
+    }
+
 
     /**
      * 列表

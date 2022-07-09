@@ -1,5 +1,6 @@
 package com.jcwang.store.order.service.impl;
 
+import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Service;
 import java.util.Map;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
@@ -25,5 +26,13 @@ public class OrderItemServiceImpl extends ServiceImpl<OrderItemDao, OrderItemEnt
 
         return new PageUtils(page);
     }
+
+    /**
+     * queues,声明监听的所有队列
+     */
+//    @RabbitListener(queues = {"as"})
+//    public void receiveMessage(Object message) {
+//        System.out.println("监听到了消息");
+//    }
 
 }
